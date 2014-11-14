@@ -1,0 +1,8 @@
+*.scss
+.sass-cache
+*.map
+*.egg-info
+*.pyc
+*.pyo
+*.mo
+dist
