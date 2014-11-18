@@ -1,0 +1,14 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  i18n_domain="eea">
+
+  <browser:resource name="eea.controlpanel.png"
+                    file="images/eea_logo.png" />
+
+  <browser:page for="zope.interface.Interface"
+                name="eea.controlpanel.html"
+                template="zpt/tool.pt"
+                class=".app.tool.ControlPanel"
+                permission="cmf.ManagePortal" />
+
+</configure>

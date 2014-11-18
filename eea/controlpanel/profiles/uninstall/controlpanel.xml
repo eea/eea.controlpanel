@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel">
+  <configlet
+    title="EEA Control panel"
+    action_id="eea.controlpanel"
+    appId="eea.controlpanel"
+    remove="True">
+    <permission>Manage portal</permission>
+  </configlet>
+</object>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel">
+  <configlet
+    title="EEA Control panel"
+    action_id="eea.controlpanel"
+    icon_expr="string:$portal_url/++resource++eea.controlpanel.png"
+    appId="eea.controlpanel"
+    category="Products"
+    condition_expr=""
+    url_expr="string:${portal_url}/@@eea.controlpanel.html"
+    visible="True">
+    <permission>Manage portal</permission>
+  </configlet>
+</object>
