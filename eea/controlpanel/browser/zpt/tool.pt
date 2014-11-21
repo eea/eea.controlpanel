@@ -10,14 +10,14 @@
   disable_column_two python:request.set('disable_plone.leftcolumn',1);
   disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
 
-  <link rel="stylesheet" type="text/css" href="eea.controlpanel.css" />
-  <script type="text/javascript" src="eea.controlpanel.js"></script>
+  <!-- link rel="stylesheet" type="text/css" href="eea.controlpanel.css" / -->
+  <!-- script type="text/javascript" src="eea.controlpanel.js"></script -->
 </metal:override>
 
 </head>
 
 <body>
-<div metal:fill-slot="prefs_configlet_main" id="eea-alchemy">
+<div metal:fill-slot="prefs_configlet_main" id="eea-controlpanel">
 
   <a href=""
     class="link-parent"
@@ -33,6 +33,35 @@
   </p>
 
   <!-- div tal:replace="structure here/@@controlpanel.search" / -->
+
+<div id="eea-controlpanel-container">
+    <div id="panel1" class="ui-widget-content eeapanel">
+        <h3 class="ui-widget-header" title="drag and drop panel"><span class="eea-icon eea-icon-user"></span>Today login status</h3>
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div id="panel2" class="ui-widget-content eeapanel">
+        <h3 class="ui-widget-header" title="drag and drop panel"><span class="eea-icon eea-icon-users"></span>Login history</h3>
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div id="panel3" class="ui-widget-content eeapanel">
+        <h3 class="ui-widget-header" title="drag and drop panel"><span class="eea-icon eea-icon-database"></span>Database activity</h3>
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+    </div>
+</div>
 
 </div>
 </body>
