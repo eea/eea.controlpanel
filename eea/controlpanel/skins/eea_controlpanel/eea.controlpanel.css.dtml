@@ -3,7 +3,7 @@
     height: 500px;
 }
 .eeapanel {
-    width: 250px;
+    width: 450px;
     height: 250px;
     padding: 0.5em;
     z-index: 10000;
@@ -18,9 +18,19 @@
 .eeapanel span {
     color: #346f83;
 }
-#panel3 {
-    width: 600px;
+.eeapanel .service-icons {
+    float: right;
 }
+#panel3 {
+    width: 950px;
+}
+
+#panel3 .container {
+    overflow-x: hidden;
+    height: 90%;
+}
+
+.container div:nth-child(even) {background: #CCC}
 
 /* Loading spinner, thx to http://tobiasahlin.com/spinkit */
 .spinner {

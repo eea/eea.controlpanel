@@ -11,4 +11,9 @@
                 class=".app.tool.ControlPanel"
                 permission="cmf.ManagePortal" />
 
+  <browser:page for="zope.interface.Interface"
+                name="eea.controlpaneldb.html"
+                class=".app.tool.ControlPanelDBActivity"
+                permission="cmf.ManagePortal" />
+
 </configure>
