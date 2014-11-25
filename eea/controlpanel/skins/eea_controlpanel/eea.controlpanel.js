@@ -16,7 +16,6 @@ EEA.ControlPanelInit = function(){
 
 EEA.ControlPanelDbActivity = function(){
     var panel = $('#panel3');
-    panel.children('.spinner').hide();
     jQuery.ajax({
         url: '@@eea.controlpaneldb.html',
         data: {},
@@ -38,8 +37,35 @@ EEA.ControlPanelDbActivity = function(){
     });
 };
 
-jQuery(document).ready(function(){
+EEA.ControlPanelLoginStatusAgent = function(){
+    setInterval(function () {
+        jQuery.ajax({
+            url: '@@eea.controlpanelloginstatusagent.html',
+            data: {},
+            error: function(jqXHR, textStatus, errorThrown){
+                console.log(errorThrown);
+            }
+        });
+    }, 5000);
+    // TODO: set to 10 minutes = 600000
+};
 
+EEA.ControlPanelLoginStatus = function(){
+    var panel = $('#panel1');
+    jQuery.ajax({
+        url: '@@eea.controlpanelloginstatus.html',
+        data: {},
+        success: function(data, textStatus, jqXHR){
+            panel.children('.container').append(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown);
+        }
+    });
+};
+
+jQuery(document).ready(function(){
+    console.log('CONTROL PANLE init +++++++++++++++++++');
     // Setup panels
     EEA.ControlPanelInit();
 
@@ -47,9 +73,9 @@ jQuery(document).ready(function(){
     EEA.ControlPanelDbActivity();
 
     // Populate today login panel
-    // TODO
+    EEA.ControlPanelLoginStatusAgent();
+    EEA.ControlPanelLoginStatus();
 
     // Populate login history panel
     // TODO
-
 });

@@ -16,4 +16,14 @@
                 class=".app.tool.ControlPanelDBActivity"
                 permission="cmf.ManagePortal" />
 
+  <browser:page for="zope.interface.Interface"
+                name="eea.controlpanelloginstatusagent.html"
+                class=".app.tool.ControlPanelLoginStatusAgent"
+                permission="zope2.View" />
+
+  <browser:page for="zope.interface.Interface"
+                name="eea.controlpanelloginstatus.html"
+                class=".app.tool.ControlPanelLoginStatus"
+                permission="cmf.ManagePortal" />
+
 </configure>
