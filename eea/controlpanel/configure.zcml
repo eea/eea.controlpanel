@@ -8,6 +8,7 @@
     <cmf:registerDirectory name="skins" directory="skins" recursive="True" />
 
     <include file="profiles.zcml" />
+    <include file="skins.zcml" />
 
     <include package=".upgrades" />
     <include package=".browser" />

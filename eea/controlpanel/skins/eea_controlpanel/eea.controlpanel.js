@@ -38,16 +38,20 @@ EEA.ControlPanelDbActivity = function(){
 };
 
 EEA.ControlPanelLoginStatusAgent = function(){
+    jQuery.ajax({
+        url: '@@eea.controlpanelloginstatusagent.html',
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown);
+        }
+    });
     setInterval(function () {
         jQuery.ajax({
             url: '@@eea.controlpanelloginstatusagent.html',
-            data: {},
             error: function(jqXHR, textStatus, errorThrown){
                 console.log(errorThrown);
             }
         });
-    }, 5000);
-    // TODO: set to 10 minutes = 600000
+    }, 300000);
 };
 
 EEA.ControlPanelLoginStatus = function(){
@@ -56,7 +60,16 @@ EEA.ControlPanelLoginStatus = function(){
         url: '@@eea.controlpanelloginstatus.html',
         data: {},
         success: function(data, textStatus, jqXHR){
-            panel.children('.container').append(data);
+            var logs = data['active_users'];
+            jQuery.each(logs, function(index, element){
+                var element_html = $('<div></div>');
+                var status_ccs = 'eea-icon-circle-o';
+                if(element[1]){status_ccs = 'eea-icon-circle';}
+                element_html.append('<span class="eea-icon ' + status_ccs + '"></span>');
+                element_html.append('<a title="" href="/author/' + index + '">' + element[0] + '</a>');
+                element_html.append(' :: ' + element[2]);
+                panel.children('.container').append(element_html);
+            });
         },
         error: function(jqXHR, textStatus, errorThrown){
             console.log(errorThrown);
@@ -65,7 +78,6 @@ EEA.ControlPanelLoginStatus = function(){
 };
 
 jQuery(document).ready(function(){
-    console.log('CONTROL PANLE init +++++++++++++++++++');
     // Setup panels
     EEA.ControlPanelInit();
 

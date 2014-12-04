@@ -30,5 +30,10 @@
     height: 90%;
 }
 
+#panel1 .container {
+    overflow-x: hidden;
+    height: 90%;
+}
+
 .container div:nth-child(even) {background: #CCC}
 

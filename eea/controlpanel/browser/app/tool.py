@@ -2,6 +2,7 @@
 """
 import logging
 import json
+import pickle
 import Globals
 from DateTime import DateTime
 from datetime import datetime
@@ -95,9 +96,26 @@ class ControlPanelLoginStatus(BrowserView):
     def __call__(self, **kwargs):
         """
         """
-        users = {}
+        active_users = {}
         logs = self.load_logs(LOGINAGENT_PATH)
         for log in reversed(json.loads(logs)['log']):
             data = json.loads(log)
-            if DateTime(data['date']).asdatetime().date() < datetime.today().date():
+            log_date = DateTime(data['date']).asdatetime().date()
+            today = datetime.today().date()
+            if log_date < today:
                 break
+            last_active = DateTime() - DateTime(data['date'])
+
+            status = True
+            if last_active > 0.004:
+                status = False
+            if active_users.has_key(data['username']) and not status:
+                if active_users[data['username']][1]:
+                    status = True
+
+            last_online = DateTime(data['date'])
+            if active_users.has_key(data['username']) and last_online < active_users[data['username']][2]:
+                last_online = active_users[data['username']][2]
+
+            active_users[data['username']] = (data['fullname'], status, last_online)
+        return jsonify({"active_users": active_users }, self.request.response)
