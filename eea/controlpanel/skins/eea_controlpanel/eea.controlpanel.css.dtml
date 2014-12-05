@@ -9,11 +9,15 @@
     z-index: 10000;
     margin: 5px;
     display: inline-block;
+    cursor: all-scroll;
+    vertical-align: top;
 }
 .eeapanel h3 {
     text-align: center;
     margin: 0;
-    cursor: all-scroll;
+}
+.eeapanel h3 span span{
+    cursor: auto;
 }
 .eeapanel span {
     color: #346f83;
@@ -24,16 +28,17 @@
 #panel3 {
     width: 950px;
 }
-
 #panel3 .container {
     overflow-x: hidden;
     height: 90%;
 }
-
 #panel1 .container {
     overflow-x: hidden;
     height: 90%;
+    background-color: #f0f0f0;
 }
-
+#panel2 .container {
+    background-color: #f0f0f0;
+}
 .container div:nth-child(even) {background: #CCC}
 

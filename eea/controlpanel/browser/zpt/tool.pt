@@ -38,12 +38,13 @@
             <span class="eea-icon eea-icon-user"></span>
             Today login status
             <span class="service-icons">
-                <span class="eea-icon eea-icon-download"></span>
-                <span class="eea-icon eea-icon-refresh"></span>
-                <span class="eea-icon eea-icon-times"></span>
+                <span class="eea-icon eea-icon-download" style="color:#999" title="Download"></span>
+                <span class="eea-icon eea-icon-refresh" title="Refresh"></span>
+                <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
             </span>
         </h3>
-        <div class="container"></div>
+        <div class="container">
+        </div>
     </div>
 
     <div id="panel2" class="ui-widget-content eeapanel">
@@ -51,12 +52,12 @@
             <span class="eea-icon eea-icon-users"></span>
             Login history
             <span class="service-icons">
-                <span class="eea-icon eea-icon-download"></span>
-                <span class="eea-icon eea-icon-refresh"></span>
-                <span class="eea-icon eea-icon-times"></span>
+                <span class="eea-icon eea-icon-download" style="color:#999" title="Download"></span>
+                <span class="eea-icon eea-icon-refresh" title="Refresh"></span>
+                <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
             </span>
         </h3>
-        <div class="container"></div>
+        <div class="container"><p style="margin-top: 5em">Under construction</p></div>
     </div>
 
     <div id="panel3" class="ui-widget-content eeapanel">
@@ -64,9 +65,9 @@
             <span class="eea-icon eea-icon-database"></span>
             Database activity
             <span class="service-icons">
-                <span class="eea-icon eea-icon-download"></span>
-                <span class="eea-icon eea-icon-refresh"></span>
-                <span class="eea-icon eea-icon-times"></span>
+                <span class="eea-icon eea-icon-download" style="color:#999" title="Download"></span>
+                <span class="eea-icon eea-icon-refresh" title="Refresh"></span>
+                <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
             </span>
         </h3>
         <div class="container"></div>
