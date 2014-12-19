@@ -2,5 +2,5 @@
 <object name="portal_css">
     <stylesheet title="" cacheable="True" compression="safe" cookable="True"
                 enabled="1" expression="" id="eea.controlpanel.css" media="screen"
-                rel="stylesheet" rendering="link"/>
+                rel="stylesheet" rendering="link" authenticated="True"/>
 </object>

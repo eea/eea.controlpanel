@@ -2,5 +2,5 @@
 <object name="portal_javascripts">
     <javascript cacheable="True" compression="safe" cookable="True"
                 enabled="True" expression="" id="eea.controlpanel.js"
-                inline="False" />
+                authenticated="True" inline="False"/>
 </object>

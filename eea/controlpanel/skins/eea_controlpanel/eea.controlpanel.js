@@ -1,7 +1,7 @@
 if(window.EEA === undefined){
   var EEA = {
     who: 'eea.controlpanel',
-    version: '1.0'
+    version: '0.1'
   };
 }
 
@@ -31,6 +31,7 @@ EEA.ControlPanelInit = function(){
 };
 
 EEA.ControlPanelDbActivity = function(){
+    console.log('ControlPanelDbActivity');
     var panel = $('#panel3');
     $('#panel3 .container').css({ "background-color": "rgb(221, 221, 221)" });
     jQuery.ajax({
@@ -65,6 +66,7 @@ EEA.ControlPanelDbActivity.prototype = {
 }
 
 EEA.ControlPanelLoginStatusAgent = function(){
+    console.log('ControlPanelLoginStatusAgent');
     jQuery.ajax({
         url: '@@eea.controlpanelloginstatusagent.html',
         error: function(jqXHR, textStatus, errorThrown){
@@ -82,6 +84,7 @@ EEA.ControlPanelLoginStatusAgent = function(){
 };
 
 EEA.ControlPanelLoginStatus = function(){
+    console.log('ControlPanelLoginStatus');
     var panel = $('#panel1');
     $('#panel1 .container').css({ "background-color": "rgb(221, 221, 221)" });
     jQuery.ajax({
@@ -116,16 +119,20 @@ EEA.ControlPanelLoginStatus.prototype = {
 }
 
 jQuery(document).ready(function(){
-    // Setup panels
-    EEA.ControlPanelInit();
-
-    // Populate database activity panel
-    EEA.ControlPanelDbActivity();
-
-    // Populate today login panel
+    var url = window.location.pathname;
     EEA.ControlPanelLoginStatusAgent();
-    EEA.ControlPanelLoginStatus();
 
-    // Populate login history panel
-    // TODO
+    if (url.match(/eea.controlpanel.html$/)) {
+        // Setup panels
+        EEA.ControlPanelInit();
+
+        // Populate database activity panel
+        EEA.ControlPanelDbActivity();
+
+        // Populate today login panel
+        EEA.ControlPanelLoginStatus();
+
+        // Populate login history panel
+        // TODO
+    }
 });
