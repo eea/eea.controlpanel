@@ -31,7 +31,6 @@ EEA.ControlPanelInit = function(){
 };
 
 EEA.ControlPanelDbActivity = function(){
-    console.log('ControlPanelDbActivity');
     var panel = $('#panel3');
     $('#panel3 .container').css({ "background-color": "rgb(221, 221, 221)" });
     jQuery.ajax({
@@ -66,25 +65,26 @@ EEA.ControlPanelDbActivity.prototype = {
 }
 
 EEA.ControlPanelLoginStatusAgent = function(){
-    console.log('ControlPanelLoginStatusAgent');
-    jQuery.ajax({
-        url: '@@eea.controlpanelloginstatusagent.html',
-        error: function(jqXHR, textStatus, errorThrown){
-            console.log(errorThrown);
-        }
-    });
-    setInterval(function () {
+    var url = window.location.pathname;
+    if (!url.match(/portal_factory/)) {
         jQuery.ajax({
             url: '@@eea.controlpanelloginstatusagent.html',
             error: function(jqXHR, textStatus, errorThrown){
                 console.log(errorThrown);
             }
         });
-    }, 300000);
+        setInterval(function () {
+            jQuery.ajax({
+                url: '@@eea.controlpanelloginstatusagent.html',
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.log(errorThrown);
+                }
+            });
+        }, 300000);
+    }
 };
 
 EEA.ControlPanelLoginStatus = function(){
-    console.log('ControlPanelLoginStatus');
     var panel = $('#panel1');
     $('#panel1 .container').css({ "background-color": "rgb(221, 221, 221)" });
     jQuery.ajax({
