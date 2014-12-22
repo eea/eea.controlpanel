@@ -11,12 +11,19 @@ from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from plone import api
 
-LOGINAGENT_PATH = Globals.ZOPE_HOME + "/var/log/loginagent.log"
+LOGS_DIR = Globals.ZOPE_HOME + "/var/log/"
+LOGINAGENT_PATH = LOGS_DIR + "loginagent.log"
+EEACPBINSTANCESAGENT_PATH = LOGS_DIR + "eeacpbinstances.log"
 logger = logging.getLogger('eea.controlpanel')
 loginagentlogger = logging.getLogger("eea.controlpanel.loginagent")
-handler = logging.handlers.RotatingFileHandler(LOGINAGENT_PATH, maxBytes=52428800, backupCount=10)
-loginagentlogger.addHandler(handler)
+eeacpbagentlogger = logging.getLogger("eea.controlpanel.eeacpbagent")
+loginhandler = logging.handlers.RotatingFileHandler(LOGINAGENT_PATH, maxBytes=52428800, backupCount=10)
+eeacpbhandler = logging.handlers.RotatingFileHandler(EEACPBINSTANCESAGENT_PATH, maxBytes=52428800, backupCount=10)
+loginagentlogger.addHandler(loginhandler)
 loginagentlogger.setLevel(logging.DEBUG)
+eeacpbagentlogger.addHandler(eeacpbhandler)
+eeacpbagentlogger.setLevel(logging.DEBUG)
+
 
 def jsonify(data, response=None, status=None):
     """ Convert obj to JSON
@@ -119,3 +126,84 @@ class ControlPanelLoginStatus(BrowserView):
 
             active_users[data['username']] = (data['fullname'], status, last_online)
         return jsonify({"active_users": active_users }, self.request.response)
+
+
+class ControlPanelEEACPBStatusAgent(BrowserView):
+    """ EEA CPB deployments status
+    """
+
+    def get_ip(self):
+        """ Extract the client IP address from the HTTP request in a proxy-compatible way.
+
+        @return: IP address as a string or None if not available
+        """
+        request = self.request
+        if "HTTP_X_FORWARDED_FOR" in request.environ:
+            # Virtual host
+            ip = request.environ["HTTP_X_FORWARDED_FOR"]
+        elif "HTTP_HOST" in request.environ:
+            # Non-virtualhost
+            ip = request.environ["REMOTE_ADDR"]
+        else:
+            ip = None
+
+        return ip
+
+    def __call__(self, **kwargs):
+        """
+        """
+
+        client_ip = self.get_ip()
+        if client_ip and self.request.method == 'POST':
+            localized = api.portal.get_localized_time(datetime=DateTime(),
+                                                      long_format=True)
+            data = {
+                'ip': client_ip,
+                'hostnames': self.request.form.get('hostnames'),
+                'date': localized
+            }
+            eeacpbagentlogger.debug(json.dumps(data))
+
+
+class ControlPanelEEACPBStatus(BrowserView):
+    """
+    """
+
+    def load_logs(self, logpath):
+        """ Load the log file
+        """
+        with open(logpath, "r") as f:
+            return jsonify({
+                "name": "EEA Control Panel Agent log",
+                "log": f.readlines() }, None)
+
+    def __call__(self, **kwargs):
+        """
+        """
+        active_ips = {}
+        logs = self.load_logs(EEACPBINSTANCESAGENT_PATH)
+        for log in reversed(json.loads(logs)['log']):
+            data = json.loads(log)
+            log_date = DateTime(data['date']).asdatetime().date()
+            today = datetime.today().date()
+            if log_date < today:
+                break
+            last_active = DateTime() - DateTime(data['date'])
+
+            status = True
+            if last_active > 0.004:
+                status = False
+
+            if active_ips.has_key(data['ip']) and not status:
+                if active_ips[data['ip']][1]:
+                    status = True
+
+            last_online = DateTime(data['date'])
+
+            active_ips[data['ip']] = {
+                'hostnames': data['hostnames'],
+                'status': status,
+                'last_online': last_online
+            }
+
+        return jsonify({"active_ips": active_ips }, self.request.response)
