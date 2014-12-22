@@ -37,6 +37,7 @@ setup(name=NAME,
       install_requires=[
 	  'plone.api',
           'setuptools',
+          'collective.js.jqueryui'
           # -*- Extra requirements: -*-
       ],
       entry_points="""
