@@ -157,12 +157,16 @@ class ControlPanelEEACPBStatusAgent(BrowserView):
         if client_ip and self.request.method == 'POST':
             localized = api.portal.get_localized_time(datetime=DateTime(),
                                                       long_format=True)
-            data = {
-                'ip': client_ip,
-                'hostnames': self.request.form.get('hostnames'),
-                'date': localized
-            }
-            eeacpbagentlogger.debug(json.dumps(data))
+            hostnames = self.request.form.get('hostnames')
+            if hostnames:
+                if not isinstance(hostnames, list):
+                    hostnames = [hostnames]
+                data = {
+                    'ip': client_ip,
+                    'hostnames': hostnames,
+                    'date': localized
+                }
+                eeacpbagentlogger.debug(json.dumps(data))
 
 
 class ControlPanelEEACPBStatus(BrowserView):
@@ -182,26 +186,33 @@ class ControlPanelEEACPBStatus(BrowserView):
         """
         active_ips = {}
         logs = self.load_logs(EEACPBINSTANCESAGENT_PATH)
+
         for log in reversed(json.loads(logs)['log']):
             data = json.loads(log)
             log_date = DateTime(data['date']).asdatetime().date()
             today = datetime.today().date()
-            if log_date < today:
-                break
+
             last_active = DateTime() - DateTime(data['date'])
 
             status = True
             if last_active > 0.004:
                 status = False
 
-            if active_ips.has_key(data['ip']) and not status:
-                if active_ips[data['ip']][1]:
-                    status = True
+            hostnames = data.get('hostnames')
+
+            if active_ips.has_key(data['ip']):
+                if not status:
+                    if active_ips[data['ip']].get('status'):
+                        status = True
+
+                hostnames = list(
+                    set(active_ips[data['ip']]['hostnames'] + hostnames)
+                )
 
             last_online = DateTime(data['date'])
 
             active_ips[data['ip']] = {
-                'hostnames': data['hostnames'],
+                'hostnames': hostnames,
                 'status': status,
                 'last_online': last_online
             }

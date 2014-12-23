@@ -72,6 +72,19 @@
         </h3>
         <div class="container"></div>
     </div>
+    
+    <div id="panel4" class="ui-widget-content eeapanel">
+        <h3 class="ui-widget-header" title="drag and drop panel">
+            <span class="eea-icon eea-icon-database"></span>
+            EEA CPB analytics
+            <span class="service-icons">
+                <span class="eea-icon eea-icon-download" style="color:#999" title="Download"></span>
+                <span class="eea-icon eea-icon-refresh" title="Refresh"></span>
+                <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
+            </span>
+        </h3>
+        <div class="container"></div>
+    </div>
 </div>
 
 </div>
