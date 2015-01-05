@@ -189,13 +189,10 @@ class ControlPanelEEACPBStatus(BrowserView):
 
         for log in reversed(json.loads(logs)['log']):
             data = json.loads(log)
-            log_date = DateTime(data['date']).asdatetime().date()
-            today = datetime.today().date()
 
             last_active = DateTime() - DateTime(data['date'])
-
             status = True
-            if last_active > 0.004:
+            if last_active > 7:
                 status = False
 
             hostnames = data.get('hostnames')
@@ -209,12 +206,12 @@ class ControlPanelEEACPBStatus(BrowserView):
                     set(active_ips[data['ip']]['hostnames'] + hostnames)
                 )
 
-            last_online = DateTime(data['date'])
+            last_ping = DateTime(data['date'])
 
             active_ips[data['ip']] = {
                 'hostnames': hostnames,
                 'status': status,
-                'last_online': last_online
+                'last_ping': last_ping
             }
 
-        return jsonify({"active_ips": active_ips }, self.request.response)
+        return jsonify({"active_ips": active_ips}, self.request.response)

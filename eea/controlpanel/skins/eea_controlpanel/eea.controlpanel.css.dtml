@@ -40,5 +40,8 @@
 #panel2 .container {
     background-color: #f0f0f0;
 }
+#panel4 {
+    width: 650px;
+}
 .container div:nth-child(even) {background: #CCC}
 

@@ -151,7 +151,7 @@ EEA.EEACPBAnalyticsPanel = function(){
                         element_html.append(',')
                     }
                 });
-                
+                element_html.append(' :: ' + element['last_ping']);
                 panel.children('.container').append(element_html);
                 $('#panel4 .container').css({ "background-color": "#f0f0f0" });
             });
