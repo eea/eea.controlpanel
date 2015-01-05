@@ -21,13 +21,21 @@ EEA.ControlPanelInit = function(){
         EEA.ControlPanelDbActivity();
     });
 
+    $( "#panel4 h3 span .eea-icon-refresh" ).click(function() {
+        EEA.EEACPBAnalyticsPanel();
+    });
+
     // Refresh "Login status" panel
     var login_status = new EEA.ControlPanelLoginStatus();
     login_status.refresh();
 
     // Refresh "DB activity" panel
-    var login_status = new EEA.ControlPanelDbActivity();
-    login_status.refresh();
+    var db_status = new EEA.ControlPanelDbActivity();
+    db_status.refresh();
+    
+    // Refresh "EEA CPB analytics" panel
+    var eea_cpb_status = new EEA.EEACPBAnalyticsPanel();
+    eea_cpb_status.refresh();
 };
 
 EEA.ControlPanelDbActivity = function(){
@@ -120,7 +128,7 @@ EEA.ControlPanelLoginStatus.prototype = {
 
 EEA.EEACPBAnalyticsPanel = function(){
     var panel = $('#panel4');
-    $('#panel1 .container').css({ "background-color": "rgb(221, 221, 221)" });
+    $('#panel4 .container').css({ "background-color": "rgb(221, 221, 221)" });
     jQuery.ajax({
         url: '@@eea.controlpaneleeacpbstatus.html',
         data: {},
@@ -178,6 +186,8 @@ jQuery(document).ready(function(){
 
         // Populate login history panel
         // TODO
+
+        // Populate EEA CPB analytics panel
         EEA.EEACPBAnalyticsPanel();
     }
 });
