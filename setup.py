@@ -37,6 +37,8 @@ setup(name=NAME,
       install_requires=[
 	  'plone.api',
           'setuptools',
+          'collective.js.jqueryui',
+          'eea.icons'
           # -*- Extra requirements: -*-
       ],
       entry_points="""
