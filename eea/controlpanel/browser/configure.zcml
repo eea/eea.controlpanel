@@ -26,4 +26,14 @@
                 class=".app.tool.ControlPanelLoginStatus"
                 permission="cmf.ManagePortal" />
 
+  <browser:page for="zope.interface.Interface"
+                name="eea.controlpaneleeacpbstatusagent.html"
+                class=".app.tool.ControlPanelEEACPBStatusAgent"
+                permission="zope2.View" />
+
+  <browser:page for="zope.interface.Interface"
+                name="eea.controlpaneleeacpbstatus.html"
+                class=".app.tool.ControlPanelEEACPBStatus"
+                permission="cmf.ManagePortal" />
+
 </configure>

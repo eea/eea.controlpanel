@@ -21,13 +21,21 @@ EEA.ControlPanelInit = function(){
         EEA.ControlPanelDbActivity();
     });
 
+    $( "#panel4 h3 span .eea-icon-refresh" ).click(function() {
+        EEA.EEACPBAnalyticsPanel();
+    });
+
     // Refresh "Login status" panel
     var login_status = new EEA.ControlPanelLoginStatus();
     login_status.refresh();
 
     // Refresh "DB activity" panel
-    var login_status = new EEA.ControlPanelDbActivity();
-    login_status.refresh();
+    var db_status = new EEA.ControlPanelDbActivity();
+    db_status.refresh();
+    
+    // Refresh "EEA CPB analytics" panel
+    var eea_cpb_status = new EEA.EEACPBAnalyticsPanel();
+    eea_cpb_status.refresh();
 };
 
 EEA.ControlPanelDbActivity = function(){
@@ -118,6 +126,50 @@ EEA.ControlPanelLoginStatus.prototype = {
     }
 }
 
+EEA.EEACPBAnalyticsPanel = function(){
+    var panel = $('#panel4');
+    $('#panel4 .container').css({ "background-color": "rgb(221, 221, 221)" });
+    jQuery.ajax({
+        url: '@@eea.controlpaneleeacpbstatus.html',
+        data: {},
+        success: function(data, textStatus, jqXHR){
+            $('#panel4 .container').html('');
+            var logs = data['active_ips'];
+            jQuery.each(logs, function(index, element){
+                var element_html = jQuery('<div />');
+                var status_ccs = 'eea-icon-circle-o';
+                if(element.status){status_ccs = 'eea-icon-circle';}
+
+                element_html.append('<span class="eea-icon ' + status_ccs + '"></span>')
+                            .append(index)
+                            .append(' - ');
+
+                var nr_hosts = element.hostnames.length;
+                jQuery.each(element.hostnames, function(idx, host){
+                    element_html.append('<a title="" href="http://' + host + '">' + host + '</a>');
+                    if (idx !== nr_hosts - 1) {
+                        element_html.append(',')
+                    }
+                });
+                element_html.append(' :: ' + element['last_ping']);
+                panel.children('.container').append(element_html);
+                $('#panel4 .container').css({ "background-color": "#f0f0f0" });
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown);
+        }
+    });
+};
+
+EEA.EEACPBAnalyticsPanel.prototype = {
+    refresh: function(){
+    setInterval(function () {
+        EEA.EEACPBAnalyticsPanel();
+    }, 300000);
+    }
+}
+
 jQuery(document).ready(function(){
     var url = window.location.pathname;
     EEA.ControlPanelLoginStatusAgent();
@@ -134,5 +186,8 @@ jQuery(document).ready(function(){
 
         // Populate login history panel
         // TODO
+
+        // Populate EEA CPB analytics panel
+        EEA.EEACPBAnalyticsPanel();
     }
 });
