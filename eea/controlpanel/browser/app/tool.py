@@ -168,6 +168,8 @@ class ControlPanelEEACPBStatusAgent(BrowserView):
                 }
                 eeacpbagentlogger.debug(json.dumps(data))
 
+                return 'OK'
+
 
 class ControlPanelEEACPBStatus(BrowserView):
     """
