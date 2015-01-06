@@ -1,5 +1,6 @@
 """ Controllers
 """
+import os
 import logging
 import json
 import pickle
@@ -11,7 +12,12 @@ from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
 from plone import api
 
-LOGINAGENT_PATH = Globals.ZOPE_HOME + "/var/log/loginagent.log"
+LOGINAGENT_PATH = os.environ.get('EEALOGINAGENT_LOG')
+if not LOGINAGENT_PATH:
+    LOGINAGENT_PATH = Globals.ZOPE_HOME + "/var/log"
+LOGINAGENT_PATH += "/loginagent.log"
+import pdb; pdb.set_trace()
+
 logger = logging.getLogger('eea.controlpanel')
 loginagentlogger = logging.getLogger("eea.controlpanel.loginagent")
 handler = logging.handlers.RotatingFileHandler(LOGINAGENT_PATH, maxBytes=52428800, backupCount=10)
