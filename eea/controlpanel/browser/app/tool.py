@@ -1,31 +1,27 @@
 """ Controllers
 """
-import os
 import logging
 import json
 import pickle
-import Globals
 from DateTime import DateTime
 from datetime import datetime
-from zope.component import queryUtility, queryAdapter
+from eea.controlpanel.browser.app.utils import get_logs_path
 from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
 from plone import api
 
-LOGINAGENT_PATH = os.environ.get('EEALOGINAGENT_LOG')
-EEACPBINSTANCESAGENT_PATH = os.environ.get('EEACPBINSTANCESAGENT_LOG')
-if not LOGINAGENT_PATH:
-    LOGINAGENT_PATH = Globals.ZOPE_HOME + "/var/log"
-if not EEACPBINSTANCESAGENT_PATH:
-    EEACPBINSTANCESAGENT_PATH = Globals.ZOPE_HOME + "/var/log"
-LOGINAGENT_PATH += "/eealogin.log"
-EEACPBINSTANCESAGENT_PATH += "/eeacpbinstances.log"
+LOGINAGENT_PATH = get_logs_path('EEALOGINAGENT_LOG') + "/eealogin.log"
+EEACPBINSTANCESAGENT_PATH = get_logs_path('EEACPBINSTANCESAGENT_LOG') +\
+    "/eeacpbinstances.log"
 
 logger = logging.getLogger('eea.controlpanel')
 loginagentlogger = logging.getLogger("eea.controlpanel.loginagent")
 eeacpbagentlogger = logging.getLogger("eea.controlpanel.eeacpbagent")
-loginhandler = logging.handlers.RotatingFileHandler(LOGINAGENT_PATH, maxBytes=52428800, backupCount=10)
-eeacpbhandler = logging.handlers.RotatingFileHandler(EEACPBINSTANCESAGENT_PATH, maxBytes=52428800, backupCount=10)
+loginhandler = logging.handlers.RotatingFileHandler(LOGINAGENT_PATH,
+                                                    maxBytes=52428800,
+                                                    backupCount=10)
+eeacpbhandler = logging.handlers.RotatingFileHandler(EEACPBINSTANCESAGENT_PATH,
+                                                     maxBytes=52428800,
+                                                     backupCount=10)
 loginagentlogger.addHandler(loginhandler)
 loginagentlogger.setLevel(logging.DEBUG)
 eeacpbagentlogger.addHandler(eeacpbhandler)

@@ -3,6 +3,9 @@ Changelog
 
 0.2-dev - (unreleased)
 ----------------------
+* Bug fix: Fixed issue when the logs dir defined as environment value did not
+  exist
+  [olimpiurob]
 
 0.1 - (2015-01-08)
 ------------------
