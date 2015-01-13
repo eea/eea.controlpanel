@@ -1,10 +1,11 @@
 """ Utils
 """
 import os
+import tempfile
 from App.config import getConfiguration
 
-cfg = getConfiguration()
-ZOPEHOME = getattr(cfg, 'zopehome', '')
+CFG = getConfiguration()
+ZOPEHOME = getattr(CFG, 'zopehome',  tempfile.gettempdir())
 
 
 def get_logs_path(log):

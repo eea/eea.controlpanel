@@ -46,14 +46,14 @@ EEA.ControlPanelDbActivity = function(){
         data: {},
         success: function(data, textStatus, jqXHR){
             $('#panel3 .container').html('');
-            var logs = data['log'];
+            var logs = data.log;
             jQuery.each(logs, function(index, element){
                 var element_html = $('<div></div>');
-                var username = jQuery.trim(element['user_name'].substring(4, element['user_name'].length));
-                element_html.append(element['description'] + '<br />');
-                element_html.append(element['time'] + '  |  ');
+                var username = jQuery.trim(element.user_name.substring(4, element.user_name.length));
+                element_html.append(element.description + '<br />');
+                element_html.append(element.time + '  |  ');
                 element_html.append('<a title="" href="/author/' + username+ '">' + username + '</a>' + '  |  ');
-                element_html.append(element['size'] + ' bytes');
+                element_html.append(element.size + ' bytes');
                 panel.children('.container').append(element_html);
                 $('#panel3 .container').css({ "background-color": "#f0f0f0" });
             });
@@ -70,7 +70,7 @@ EEA.ControlPanelDbActivity.prototype = {
         EEA.ControlPanelDbActivity();
     }, 60000);
     }
-}
+};
 
 EEA.ControlPanelLoginStatusAgent = function(){
     var url = window.location.pathname;
@@ -100,7 +100,7 @@ EEA.ControlPanelLoginStatus = function(){
         data: {},
         success: function(data, textStatus, jqXHR){
             $('#panel1 .container').html('');
-            var logs = data['active_users'];
+            var logs = data.active_users;
             jQuery.each(logs, function(index, element){
                 var element_html = $('<div></div>');
                 var status_ccs = 'eea-icon-circle-o';
@@ -124,7 +124,7 @@ EEA.ControlPanelLoginStatus.prototype = {
         EEA.ControlPanelLoginStatus();
     }, 300000);
     }
-}
+};
 
 EEA.EEACPBAnalyticsPanel = function(){
     var panel = $('#panel4');
@@ -134,7 +134,7 @@ EEA.EEACPBAnalyticsPanel = function(){
         data: {},
         success: function(data, textStatus, jqXHR){
             $('#panel4 .container').html('');
-            var logs = data['active_ips'];
+            var logs = data.active_ips;
             jQuery.each(logs, function(index, element){
                 var element_html = jQuery('<div />');
                 var status_ccs = 'eea-icon-circle-o';
@@ -148,10 +148,10 @@ EEA.EEACPBAnalyticsPanel = function(){
                 jQuery.each(element.hostnames, function(idx, host){
                     element_html.append('<a title="" href="http://' + host + '">' + host + '</a>');
                     if (idx !== nr_hosts - 1) {
-                        element_html.append(',')
+                        element_html.append(',');
                     }
                 });
-                element_html.append(' :: ' + element['last_ping']);
+                element_html.append(' :: ' + element.last_ping);
                 panel.children('.container').append(element_html);
                 $('#panel4 .container').css({ "background-color": "#f0f0f0" });
             });
@@ -168,7 +168,7 @@ EEA.EEACPBAnalyticsPanel.prototype = {
         EEA.EEACPBAnalyticsPanel();
     }, 300000);
     }
-}
+};
 
 jQuery(document).ready(function(){
     var url = window.location.pathname;

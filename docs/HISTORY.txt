@@ -3,6 +3,11 @@ Changelog
 
 0.5-dev - (unreleased)
 ----------------------
+* Change: Fallback to tmp directory in case no environment variable or no value
+  can be found for ZOPEHOME
+  [olimpiu]
+* Bug fix: Lint fixes
+  [olimpiu]
 
 0.4 - (2015-01-13)
 ------------------
