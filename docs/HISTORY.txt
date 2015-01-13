@@ -1,6 +1,9 @@
 Changelog
 =========
 
+0.5-dev - (unreleased)
+----------------------
+
 0.4 - (2015-01-13)
 ------------------
 * Bug fix: Avoid Globals.ZOPE_HOME and retrieve ZOPEHOME from App.configuration
