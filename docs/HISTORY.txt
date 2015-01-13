@@ -3,6 +3,8 @@ Changelog
 
 0.3-dev - (unreleased)
 ----------------------
+* Bug fix: Fixed tests
+  [olimpiurob]
 
 0.2 - (2015-01-12)
 ------------------
