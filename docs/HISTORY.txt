@@ -1,6 +1,32 @@
 Changelog
 =========
 
-0.1-dev - (unreleased)
+0.5-dev - (unreleased)
 ----------------------
+* Change: Fallback to tmp directory in case no environment variable or no value
+  can be found for ZOPEHOME
+  [olimpiu]
+* Bug fix: Lint fixes
+  [olimpiu]
+
+0.4 - (2015-01-13)
+------------------
+* Bug fix: Avoid Globals.ZOPE_HOME and retrieve ZOPEHOME from App.configuration
+  directly
+  [olimpiurob]
+
+0.3 - (2015-01-13)
+------------------
+* Bug fix: Fixed tests
+  [olimpiurob]
+
+0.2 - (2015-01-12)
+------------------
+* Bug fix: Fixed issue when the logs dir defined as environment value did not
+  exist
+  [olimpiurob]
+
+0.1 - (2015-01-08)
+------------------
 - Initial release
+

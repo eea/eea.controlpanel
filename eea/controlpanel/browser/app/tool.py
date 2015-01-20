@@ -1,35 +1,31 @@
 """ Controllers
 """
-import os
 import logging
 import json
 import pickle
-import Globals
 from DateTime import DateTime
 from datetime import datetime
-from zope.component import queryUtility, queryAdapter
+from eea.controlpanel.browser.app.utils import get_logs_path
 from Products.Five.browser import BrowserView
-from Products.CMFCore.utils import getToolByName
 from plone import api
 
-LOGINAGENT_PATH = os.environ.get('EEALOGINAGENT_LOG')
-EEACPBINSTANCESAGENT_PATH = os.environ.get('EEACPBINSTANCESAGENT_LOG')
-if not LOGINAGENT_PATH:
-    LOGINAGENT_PATH = Globals.ZOPE_HOME + "/var/log"
-if not EEACPBINSTANCESAGENT_PATH:
-    EEACPBINSTANCESAGENT_PATH = Globals.ZOPE_HOME + "/var/log"
-LOGINAGENT_PATH += "/eealogin.log"
-EEACPBINSTANCESAGENT_PATH += "/eeacpbinstances.log"
+LOGINAGENT_PATH = get_logs_path('EEALOGINAGENT_LOG') + "/eealogin.log"
+EEACPBINSTANCESAGENT_PATH = get_logs_path('EEACPBINSTANCESAGENT_LOG') +\
+    "/eeacpbinstances.log"
 
-logger = logging.getLogger('eea.controlpanel')
-loginagentlogger = logging.getLogger("eea.controlpanel.loginagent")
-eeacpbagentlogger = logging.getLogger("eea.controlpanel.eeacpbagent")
-loginhandler = logging.handlers.RotatingFileHandler(LOGINAGENT_PATH, maxBytes=52428800, backupCount=10)
-eeacpbhandler = logging.handlers.RotatingFileHandler(EEACPBINSTANCESAGENT_PATH, maxBytes=52428800, backupCount=10)
-loginagentlogger.addHandler(loginhandler)
-loginagentlogger.setLevel(logging.DEBUG)
-eeacpbagentlogger.addHandler(eeacpbhandler)
-eeacpbagentlogger.setLevel(logging.DEBUG)
+LOGGER = logging.getLogger('eea.controlpanel')
+LOGINAGENTLOGGER = logging.getLogger("eea.controlpanel.loginagent")
+EEACPBAGENTLOGGER = logging.getLogger("eea.controlpanel.eeacpbagent")
+LOGINHANDLER = logging.handlers.RotatingFileHandler(LOGINAGENT_PATH,
+                                                    maxBytes=52428800,
+                                                    backupCount=10)
+EEACPBHANDLER = logging.handlers.RotatingFileHandler(EEACPBINSTANCESAGENT_PATH,
+                                                     maxBytes=52428800,
+                                                     backupCount=10)
+LOGINAGENTLOGGER.addHandler(LOGINHANDLER)
+LOGINAGENTLOGGER.setLevel(logging.DEBUG)
+EEACPBAGENTLOGGER.addHandler(EEACPBHANDLER)
+EEACPBAGENTLOGGER.setLevel(logging.DEBUG)
 
 
 def jsonify(data, response=None, status=None):
@@ -43,8 +39,11 @@ def jsonify(data, response=None, status=None):
 
 
 class PythonObjectEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, (list, dict, str, unicode, int, float, bool, type(None))):
+    """ Python Object Encoder
+    """
+    def default(self, obj):     # pylint: disable=E0202
+        o_types = (list, dict, str, unicode, int, float, bool, type(None))
+        if isinstance(obj, o_types):
             return json.JSONEncoder.default(self, obj)
         elif isinstance(obj, set):
             return list(obj)
@@ -54,12 +53,12 @@ class PythonObjectEncoder(json.JSONEncoder):
 
 
 class ControlPanel(BrowserView):
-    """
+    """ Control Panel view
     """
 
 
 class ControlPanelDBActivity(BrowserView):
-    """
+    """ ControlPanel DB Activity view
     """
 
     def __call__(self, **kwargs):
@@ -92,11 +91,11 @@ class ControlPanelLoginStatusAgent(BrowserView):
                 "fullname": fullname,
                 "username": username
             }
-            loginagentlogger.debug(json.dumps(data))
+            LOGINAGENTLOGGER.debug(json.dumps(data))
 
 
 class ControlPanelLoginStatus(BrowserView):
-    """
+    """ ControlPanel Login status view
     """
 
     def load_logs(self, logpath):
@@ -128,10 +127,13 @@ class ControlPanelLoginStatus(BrowserView):
                     status = True
 
             last_online = DateTime(data['date'])
-            if active_users.has_key(data['username']) and last_online < active_users[data['username']][2]:
-                last_online = active_users[data['username']][2]
+            if active_users.has_key(data['username']):
+                if last_online < active_users[data['username']][2]:
+                    last_online = active_users[data['username']][2]
 
-            active_users[data['username']] = (data['fullname'], status, last_online)
+            active_users[data['username']] = (data['fullname'],
+                                              status,
+                                              last_online)
         return jsonify({"active_users": active_users }, self.request.response)
 
 
@@ -140,8 +142,8 @@ class ControlPanelEEACPBStatusAgent(BrowserView):
     """
 
     def get_ip(self):
-        """ Extract the client IP address from the HTTP request in a proxy-compatible way.
-
+        """ Extract the client IP address from the HTTP request in a
+        proxy-compatible way.
         @return: IP address as a string or None if not available
         """
         request = self.request
@@ -173,13 +175,13 @@ class ControlPanelEEACPBStatusAgent(BrowserView):
                     'hostnames': hostnames,
                     'date': localized
                 }
-                eeacpbagentlogger.debug(json.dumps(data))
+                EEACPBAGENTLOGGER.debug(json.dumps(data))
 
                 return 'OK'
 
 
 class ControlPanelEEACPBStatus(BrowserView):
-    """
+    """ ControlPanel EEA CPB status view
     """
 
     def load_logs(self, logpath):
