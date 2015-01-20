@@ -32,7 +32,7 @@ EEA.ControlPanelInit = function(){
     // Refresh "DB activity" panel
     var db_status = new EEA.ControlPanelDbActivity();
     db_status.refresh();
-    
+
     // Refresh "EEA CPB analytics" panel
     var eea_cpb_status = new EEA.EEACPBAnalyticsPanel();
     eea_cpb_status.refresh();
