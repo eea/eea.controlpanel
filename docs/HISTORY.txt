@@ -1,6 +1,9 @@
 Changelog
 =========
 
+0.6-dev - (unreleased)
+----------------------
+
 0.5 - (2015-01-22)
 ------------------
 * Change: Fallback to tmp directory in case no environment variable or no value
