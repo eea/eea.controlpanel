@@ -112,7 +112,11 @@ class ControlPanelLoginStatus(BrowserView):
         active_users = {}
         logs = self.load_logs(LOGINAGENT_PATH)
         for log in reversed(json.loads(logs)['log']):
-            data = json.loads(log)
+            # quick fix for #22658
+            try:
+                data = json.loads(log)
+            except ValueError:
+                continue
             log_date = DateTime(data['date']).asdatetime().date()
             today = datetime.today().date()
             if log_date < today:

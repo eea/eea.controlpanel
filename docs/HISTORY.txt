@@ -3,6 +3,8 @@ Changelog
 
 0.6-dev - (unreleased)
 ----------------------
+* Bug fix: quick fix for concurrent writings in Python logs
+  [ghicaale refs #22658]
 
 0.5 - (2015-01-22)
 ------------------
