@@ -48,7 +48,7 @@ EEA.ControlPanelDbActivity = function(){
             $('#panel3 .container').html('');
             var logs = data.log;
             jQuery.each(logs, function(index, element){
-                var element_html = $('<div></div>');
+                var element_html = $('<div class="controlpanel-list-row"></div>');
                 var username = jQuery.trim(element.user_name.substring(4, element.user_name.length));
                 element_html.append(element.description + '<br />');
                 element_html.append(element.time + '  |  ');
@@ -101,13 +101,48 @@ EEA.ControlPanelLoginStatus = function(){
         success: function(data, textStatus, jqXHR){
             $('#panel1 .container').html('');
             var logs = data.active_users;
+            var users = [];
             jQuery.each(logs, function(index, element){
-                var element_html = $('<div></div>');
+                if (element[0] === ""){
+                    element[0] = index;
+                }
+                users.push({index:index, element:element});
+            });
+
+            users.sort(function(a, b){
+                if (a.element[1] === b.element[1]){
+                    if (a.element[0] > b.element[0]){
+                        return 1;
+                    }
+                    if (a.element[0] < b.element[0]){
+                        return -1;
+                    }
+                    if (a.element[0] === b.element[0]){
+                        return 0;
+                    }
+                }
+                else {
+                    if (a.element[1]){
+                        return -1;
+                    }
+                    else {
+                        return 1;
+                    }
+                }
+            });
+
+            panel.children('.container').append('<div class="controlpanel-user-header"><div class="controlpanel-user-number">Nr.</div><div class="controlpanel-user-name">Username</div> <div class="controlpanel-user-lastlogin">Last login</div></div>')
+            panel.children('.container').append('<div style="clear:both"><!-- --></div>');
+            jQuery.each(users, function(idx, user){
+                var element_html = $('<div class="controlpanel-list-row controlpanel-user-row"></div>');
+                element_html.append('<div class="controlpanel-user-number">' + idx+ '</div>');
                 var status_ccs = 'eea-icon-circle-o';
-                if(element[1]){status_ccs = 'eea-icon-circle';}
-                element_html.append('<span class="eea-icon ' + status_ccs + '"></span>');
-                element_html.append('<a title="" href="/author/' + index + '">' + element[0] + '</a>');
-                element_html.append(' :: ' + element[2]);
+                if(user.element[1]){status_ccs = 'eea-icon-circle';}
+                element_html.append('<div class="controlpanel-user-name"><span class="eea-icon ' + status_ccs + '"></span>');
+                element_html.append('<a title="" href="/author/' + user.index + '">' + user.element[0] + '</a></div>');
+
+
+                element_html.append('<div class="controlpanel-user-lastlogin">' + user.element[2] +'</div>');
                 panel.children('.container').append(element_html);
                 $('#panel1 .container').css({ "background-color": "#f0f0f0" });
             });
@@ -136,7 +171,7 @@ EEA.EEACPBAnalyticsPanel = function(){
             $('#panel4 .container').html('');
             var logs = data.active_ips;
             jQuery.each(logs, function(index, element){
-                var element_html = jQuery('<div />');
+                var element_html = jQuery('<div class="controlpanel-list-row" />');
                 var status_ccs = 'eea-icon-circle-o';
                 if(element.status){status_ccs = 'eea-icon-circle';}
 

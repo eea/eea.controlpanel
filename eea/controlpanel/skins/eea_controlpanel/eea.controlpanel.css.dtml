@@ -25,9 +25,6 @@
 .eeapanel .service-icons {
     float: right;
 }
-#panel3 {
-    width: 950px;
-}
 #panel3 .container {
     overflow-x: hidden;
     height: 90%;
@@ -40,8 +37,29 @@
 #panel2 .container {
     background-color: #f0f0f0;
 }
-#panel4 {
-    width: 650px;
-}
-.container div:nth-child(even) {background: #CCC}
+.container .controlpanel-list-row:nth-child(even) {background: #CCC}
 
+.controlpanel-user-row {
+    text-align:left;
+}
+
+.controlpanel-user-number {
+    float:left;
+}
+
+.controlpanel-user-name {
+    float:left;
+    margin-left:50px;
+}
+
+.controlpanel-user-lastlogin {
+    float:right;
+}
+
+#eea-controlpanel-container .eea-icon-refresh{
+    cursor:pointer;
+}
+
+.controlpanel-user-header {
+    font-weight:bold;
+}
