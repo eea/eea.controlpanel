@@ -7,10 +7,33 @@ if(window.EEA === undefined){
 
 EEA.ControlPanelInit = function(){
     var panels = $("div[id^='panel']");
+
+    function moveOnTop(element){
+        var maxzindex = 0;
+        jQuery("div[id^='panel']").each(function(){
+            var thiszindex = parseInt(jQuery(this).css("z-index"), 10);
+            if (maxzindex < thiszindex) {
+                maxzindex = thiszindex;
+            }
+        });
+        jQuery(element).css("z-index", maxzindex + 1);
+    }
+
     jQuery.each(panels, function(index, element){
         element = $(element);
-        element.draggable();
-        element.resizable();
+        element.draggable({
+            start:function(){
+                moveOnTop(this);
+            }
+        });
+        element.resizable({
+            start:function(){
+                moveOnTop(this);
+            }
+        });
+        element.click(function(){
+            moveOnTop(this);
+        });
     });
 
     $( "#panel1 h3 span .eea-icon-refresh" ).click(function() {
@@ -131,7 +154,7 @@ EEA.ControlPanelLoginStatus = function(){
                 }
             });
 
-            panel.children('.container').append('<div class="controlpanel-user-header"><div class="controlpanel-user-number">Nr.</div><div class="controlpanel-user-name">Username</div> <div class="controlpanel-user-lastlogin">Last login</div></div>')
+            panel.children('.container').append('<div class="controlpanel-user-header"><div class="controlpanel-user-number">Nr.</div><div class="controlpanel-user-name">Username</div> <div class="controlpanel-user-lastlogin">Last login</div></div>');
             panel.children('.container').append('<div style="clear:both"><!-- --></div>');
             jQuery.each(users, function(idx, user){
                 var element_html = $('<div class="controlpanel-list-row controlpanel-user-row"></div>');
