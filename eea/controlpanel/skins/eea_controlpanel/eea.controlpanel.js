@@ -34,6 +34,12 @@ EEA.ControlPanelInit = function(){
         element.click(function(){
             moveOnTop(this);
         });
+        element.data("original-offset", element.offset());
+    });
+    jQuery.each(panels, function(index, element){
+        element = $(element);
+        element.css("position", "absolute");
+        element.offset(element.data("original-offset"));
     });
 
     $( "#panel1 h3 span .eea-icon-refresh" ).click(function() {
