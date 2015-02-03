@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.6-dev - (unreleased)
-----------------------
+0.6 - (2015-02-03)
+------------------
 * Changes: updated layout of "Today login status" panel
   [szabozo0 refs #22687]
 * Bug fix: quick fix for concurrent writings in Python logs
