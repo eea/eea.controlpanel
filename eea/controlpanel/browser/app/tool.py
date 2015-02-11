@@ -7,6 +7,7 @@ from DateTime import DateTime
 from datetime import datetime
 from eea.controlpanel.browser.app.utils import get_logs_path
 from Products.Five.browser import BrowserView
+from Products.CMFPlone.utils import safe_unicode
 from plone import api
 
 LOGINAGENT_PATH = get_logs_path('EEALOGINAGENT_LOG') + "/eealogin.log"
@@ -35,7 +36,18 @@ def jsonify(data, response=None, status=None):
         response.setHeader("Content-type", "application/json")
         if status:
             response.setStatus(status)
-    return PythonObjectEncoder(indent=2, sort_keys=True).encode(data)
+    try:
+        return PythonObjectEncoder(indent=2, sort_keys=True).encode(data)
+    except UnicodeDecodeError:
+        # Fix case when undoable_transactions send trunkated unicode
+        data_safe = []
+        for k in data['log']:
+            dic_safe = {}
+            for m in k.keys():
+                dic_safe[m] = safe_unicode(k[m])
+            data_safe.append(dic_safe)
+        data['log'] = data_safe
+        return PythonObjectEncoder(indent=2, sort_keys=True).encode(data)
 
 
 class PythonObjectEncoder(json.JSONEncoder):
