@@ -1,6 +1,9 @@
 Changelog
 =========
 
+0.8.dev0 - (unreleased)
+-----------------------
+
 0.7 - (2015-02-16)
 ------------------
 * Bug fix: fixed database activity log when unicode is trunkated
