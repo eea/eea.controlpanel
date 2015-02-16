@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.7.dev0 - (unreleased)
------------------------
+0.7 - (2015-02-16)
+------------------
 * Bug fix: fixed database activity log when unicode is trunkated
   by the ndoable_transa method
   [ghicaale refs #22883]
