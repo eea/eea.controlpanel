@@ -3,6 +3,9 @@ Changelog
 
 0.8.dev0 - (unreleased)
 -----------------------
+* Bug fix: ajax aggregators will not spam the logs with unauthorized warnings
+  anymore when control panel remain opened in an anonymous browser
+  [ghicaale refs #23443]
 
 0.7 - (2015-02-16)
 ------------------
@@ -38,8 +41,8 @@ Changelog
 
 0.2 - (2015-01-12)
 ------------------
-* Bug fix: Fixed issue when the logs dir defined as environment value did not
-  exist
+* Bug fix: Fixed issue when the logs dir defined as environment
+  value did not exist
   [olimpiurob]
 
 0.1 - (2015-01-08)

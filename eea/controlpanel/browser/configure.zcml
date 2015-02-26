@@ -14,7 +14,7 @@
   <browser:page for="zope.interface.Interface"
                 name="eea.controlpaneldb.html"
                 class=".app.tool.ControlPanelDBActivity"
-                permission="cmf.ManagePortal" />
+                permission="zope2.View" />
 
   <browser:page for="zope.interface.Interface"
                 name="eea.controlpanelloginstatusagent.html"
@@ -24,7 +24,7 @@
   <browser:page for="zope.interface.Interface"
                 name="eea.controlpanelloginstatus.html"
                 class=".app.tool.ControlPanelLoginStatus"
-                permission="cmf.ManagePortal" />
+                permission="zope2.View" />
 
   <browser:page for="zope.interface.Interface"
                 name="eea.controlpaneleeacpbstatusagent.html"
@@ -34,6 +34,6 @@
   <browser:page for="zope.interface.Interface"
                 name="eea.controlpaneleeacpbstatus.html"
                 class=".app.tool.ControlPanelEEACPBStatus"
-                permission="cmf.ManagePortal" />
+                permission="zope2.View" />
 
 </configure>
