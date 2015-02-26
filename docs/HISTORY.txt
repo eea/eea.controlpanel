@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.8.dev0 - (unreleased)
------------------------
+0.8 - (2015-02-26)
+------------------
 * Bug fix: ajax aggregators will not spam the logs with unauthorized warnings
   anymore when control panel remain opened in an anonymous browser
   [ghicaale refs #23443]
