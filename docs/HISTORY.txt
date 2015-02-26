@@ -1,6 +1,9 @@
 Changelog
 =========
 
+0.9.dev0 - (unreleased)
+-----------------------
+
 0.8 - (2015-02-26)
 ------------------
 * Bug fix: ajax aggregators will not spam the logs with unauthorized warnings
