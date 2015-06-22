@@ -5,7 +5,7 @@ import tempfile
 from App.config import getConfiguration
 
 CFG = getConfiguration()
-ZOPEHOME = getattr(CFG, 'zopehome',  tempfile.gettempdir())
+ZOPEHOME = getattr(CFG, 'zopehome', tempfile.gettempdir())
 
 
 def get_logs_path(log):
