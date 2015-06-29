@@ -25,19 +25,19 @@
 .eeapanel .service-icons {
     float: right;
 }
-#panel3 .container {
+#panel3 .panel-container {
     overflow-x: hidden;
     height: 90%;
 }
-#panel1 .container {
+#panel1 .panel-container {
     overflow-x: hidden;
     height: 90%;
     background-color: #f0f0f0;
 }
-#panel2 .container {
+#panel2 .panel-container {
     background-color: #f0f0f0;
 }
-.container .controlpanel-list-row:nth-child(even) {background: #CCC}
+.panel-container .controlpanel-list-row:nth-child(even) {background: #CCC}
 
 .controlpanel-user-row {
     text-align:left;

@@ -43,7 +43,7 @@
                 <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
             </span>
         </h3>
-        <div class="container">
+        <div class="panel-container">
         </div>
     </div>
 
@@ -57,7 +57,7 @@
                 <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
             </span>
         </h3>
-        <div class="container"><p style="margin-top: 5em">Under construction</p></div>
+        <div class="panel-container"><p style="margin-top: 5em">Under construction</p></div>
     </div>
 
     <div id="panel3" class="ui-widget-content eeapanel">
@@ -70,7 +70,7 @@
                 <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
             </span>
         </h3>
-        <div class="container"></div>
+        <div class="panel-container"></div>
     </div>
     <div id="panel4" class="ui-widget-content eeapanel">
         <h3 class="ui-widget-header" title="drag and drop panel">
@@ -82,7 +82,7 @@
                 <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
             </span>
         </h3>
-        <div class="container"></div>
+        <div class="panel-container"></div>
     </div>
 </div>
 
