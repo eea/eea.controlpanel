@@ -76,8 +76,8 @@ class ControlPanelDBActivity(BrowserView):
     def __call__(self, **kwargs):
         """
         """
-        result = { "name": "EEA Control Panel API",
-                   "log": {} }
+        result = {"name": "EEA Control Panel API",
+                  "log": {}}
         if not api.user.is_anonymous():
             portal = api.portal.get()
             result['log'] = portal.undoable_transactions(first_transaction=0,
@@ -117,7 +117,7 @@ class ControlPanelLoginStatus(BrowserView):
         with open(logpath, "r") as f:
             return jsonify({
                 "name": "EEA Control Panel Agent log",
-                "log": f.readlines() }, None)
+                "log": f.readlines()}, None)
 
     def get_results(self):
         """ Extract login status information
@@ -156,7 +156,7 @@ class ControlPanelLoginStatus(BrowserView):
     def __call__(self, **kwargs):
         """
         """
-        result = { 'active_users': {} }
+        result = {'active_users': {}}
         if not api.user.is_anonymous():
             result['active_users'] = self.get_results()
         return jsonify(result, self.request.response)
@@ -215,7 +215,7 @@ class ControlPanelEEACPBStatus(BrowserView):
         with open(logpath, "r") as f:
             return jsonify({
                 "name": "EEA Control Panel Agent log",
-                "log": f.readlines() }, None)
+                "log": f.readlines()}, None)
 
     def get_results(self):
         """ Extract EEA CPB usage
@@ -254,7 +254,7 @@ class ControlPanelEEACPBStatus(BrowserView):
     def __call__(self, **kwargs):
         """
         """
-        results = { 'active_ips': {} }
+        results = {'active_ips': {}}
         if not api.user.is_anonymous():
             results['active_ips'] = self.get_results()
         return jsonify(results, self.request.response)

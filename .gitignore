@@ -6,3 +6,5 @@
 *.pyo
 *.mo
 dist
+pylint.log
+pyflakes.log
