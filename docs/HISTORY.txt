@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.0.dev0 - (unreleased)
------------------------
+1.0 - (2015-07-28)
+------------------
 * Bug fix: prefixed container classes in order to avoid styling issues when
   website loads Twitter Bootstrap
   [ichimdav refs #26197]
