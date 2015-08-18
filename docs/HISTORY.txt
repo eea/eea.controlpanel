@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.2.dev0 - (unreleased)
------------------------
+1.2 - (2015-08-18)
+------------------
 * Change: Prefixed container classes with panel prefix since container is a
   class found within Twitter Bootstrap, and when it is present the layout
   gets broken
