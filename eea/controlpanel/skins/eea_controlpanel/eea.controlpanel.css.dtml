@@ -25,13 +25,11 @@
 .eeapanel .service-icons {
     float: right;
 }
-#panel3 .control-panel-container {
-    overflow-x: hidden;
+.control-panel-container {
+    overflow: auto;
     height: 90%;
 }
 #panel1 .control-panel-container {
-    overflow-x: hidden;
-    height: 90%;
     background-color: #f0f0f0;
 }
 #panel2 .control-panel-container {
