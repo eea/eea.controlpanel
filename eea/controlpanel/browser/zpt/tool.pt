@@ -25,11 +25,11 @@
     i18n:translate="">Site Setup</a>
 
   <h1 class="documentFirstHeading" i18n:translate="">
-    EEA Control panel
+    Monitor: CMS activity
   </h1>
 
   <p class="documentDescription" i18n:translate="">
-    EEA Control panel
+    EEA Control panel monitor various aspects of the CMS activity.
   </p>
 
 <div id="eea-controlpanel-container">

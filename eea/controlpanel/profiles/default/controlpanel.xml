@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object name="portal_controlpanel">
   <configlet
-    title="EEA Control panel"
+    title="Monitor: CMS activity"
     action_id="eea.controlpanel"
     icon_expr="string:$portal_url/++resource++eea.controlpanel.png"
     appId="eea.controlpanel"
