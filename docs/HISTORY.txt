@@ -3,6 +3,8 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Bug fix: Fix REMOTE_ADDR getter from request.environment
+  [avoinea]
 * Change: changed control panel entry name
   [alecghica refs #70987]
 * Upgrade step: re-import control panel profile
