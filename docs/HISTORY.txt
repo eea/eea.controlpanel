@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.4.dev0 - (unreleased)
------------------------
+1.4 - (2016-05-04)
+------------------
 * Bug fix: Fix REMOTE_ADDR getter from request.environment
   [avoinea]
 * Change: changed control panel entry name
