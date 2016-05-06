@@ -1,6 +1,6 @@
 """Common configuration constants
 """
-PROJECTNAME = 'eea.controlpanel'
-
 from zope.i18nmessageid import MessageFactory
+
+PROJECTNAME = 'eea.controlpanel'
 EEAMessageFactory = MessageFactory('eea')
