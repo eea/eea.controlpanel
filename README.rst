@@ -16,9 +16,7 @@ Contents
 Main features
 =============
 
-1.
-2.
-3.
+1. Portal usage insights
 
 Install
 =======
@@ -31,16 +29,14 @@ Install
 Getting started
 ===============
 
-1.
-2.
-3.
+1. Go to Site Setup > Monitor: CMS activity
 
 Dependencies
 ============
 
-1.
-2.
-3.
+1. collective.js.jqueryui
+2. eea.icons
+3. plone.api
 
 Source code
 ===========
