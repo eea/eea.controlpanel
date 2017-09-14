@@ -1,10 +1,8 @@
-======================
+=================
 EEA Control Panel
-======================
-.. image:: http://ci.eionet.europa.eu/job/eea.controlpanel-www/badge/icon
-  :target: http://ci.eionet.europa.eu/job/eea.controlpanel-www/lastBuild
-.. image:: http://ci.eionet.europa.eu/job/eea.controlpanel-plone4/badge/icon
-  :target: http://ci.eionet.europa.eu/job/eea.controlpanel-plone4/lastBuild
+=================
+.. image:: http://ci.eionet.europa.eu/job/eea/job/eea.controlpanel/job/master/badge/icon
+  :target: http://ci.eionet.europa.eu/job/eea/job/eea.controlpanel/job/master/display/redirect
 
 EEA Control Panel
 
