@@ -34,13 +34,13 @@
 
 <div id="eea-controlpanel-container">
     <div id="panel1" class="ui-widget-content eeapanel">
-        <h3 class="ui-widget-header" title="drag and drop panel">
+        <h3 class="ui-widget-header" title="drag and drop panel" tal:attributes="title">
             <span class="eea-icon eea-icon-user"></span>
-            Today login status
+            <tal:block i18n:translate="">Today login status</tal:block>
             <span class="service-icons">
-                <span class="eea-icon eea-icon-download" style="color:#999" title="Download"></span>
-                <span class="eea-icon eea-icon-refresh" title="Refresh"></span>
-                <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
+                <span class="eea-icon eea-icon-download" style="color:#999" title="Download" tal:attributes="title"></span>
+                <span class="eea-icon eea-icon-refresh" title="Refresh" tal:attributes="title"></span>
+                <span class="eea-icon eea-icon-times" style="color:#999" title="Close" i18n:attributes="title"></span>
             </span>
         </h3>
         <div class="control-panel-container">
@@ -48,38 +48,38 @@
     </div>
 
     <div id="panel2" class="ui-widget-content eeapanel">
-        <h3 class="ui-widget-header" title="drag and drop panel">
+        <h3 class="ui-widget-header" title="drag and drop panel" i18n:attributes="title">
             <span class="eea-icon eea-icon-users"></span>
-            Login history
+            <tal:block i18n:translate="">Login history</tal:block>
             <span class="service-icons">
-                <span class="eea-icon eea-icon-download" style="color:#999" title="Download"></span>
-                <span class="eea-icon eea-icon-refresh" title="Refresh"></span>
-                <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
+                <span class="eea-icon eea-icon-download" style="color:#999" title="Download" i18n:attributes="title"></span>
+                <span class="eea-icon eea-icon-refresh" title="Refresh" i18n:attributes="title"></span>
+                <span class="eea-icon eea-icon-times" style="color:#999" title="Close" i18n:attributes="title"></span>
             </span>
         </h3>
-        <div class="control-panel-container"><p style="margin-top: 5em">Under construction</p></div>
+        <div class="control-panel-container"><p style="margin-top: 5em" i18n:translate="">Under construction</p></div>
     </div>
 
     <div id="panel3" class="ui-widget-content eeapanel">
-        <h3 class="ui-widget-header" title="drag and drop panel">
+        <h3 class="ui-widget-header" title="drag and drop panel" i18n:attributes="title">
             <span class="eea-icon eea-icon-database"></span>
-            Database activity
+            <tal:block i18n:translate="">Database activity</tal:block>
             <span class="service-icons">
-                <span class="eea-icon eea-icon-download" style="color:#999" title="Download"></span>
-                <span class="eea-icon eea-icon-refresh" title="Refresh"></span>
-                <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
+                <span class="eea-icon eea-icon-download" style="color:#999" title="Download" i18n:attributes="title"></span>
+                <span class="eea-icon eea-icon-refresh" title="Refresh" i18n:attributes="title"></span>
+                <span class="eea-icon eea-icon-times" style="color:#999" title="Close" i18n:attributes="title"></span>
             </span>
         </h3>
         <div class="control-panel-container"></div>
     </div>
     <div id="panel4" class="ui-widget-content eeapanel">
-        <h3 class="ui-widget-header" title="drag and drop panel">
+        <h3 class="ui-widget-header" title="drag and drop panel" i18n:attributes="title">
             <span class="eea-icon eea-icon-globe"></span>
-            EEA CPB analytics
+            <tal:block i18n:translate="">EEA CPB analytics</tal:block>
             <span class="service-icons">
-                <span class="eea-icon eea-icon-download" style="color:#999" title="Download"></span>
-                <span class="eea-icon eea-icon-refresh" title="Refresh"></span>
-                <span class="eea-icon eea-icon-times" style="color:#999" title="Close"></span>
+                <span class="eea-icon eea-icon-download" style="color:#999" title="Download" i18n:attributes="title"></span>
+                <span class="eea-icon eea-icon-refresh" title="Refresh" i18n:attributes="title"></span>
+                <span class="eea-icon eea-icon-times" style="color:#999" title="Close" i18n:attributes="title"></span>
             </span>
         </h3>
         <div class="control-panel-container"></div>
