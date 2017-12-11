@@ -34,12 +34,12 @@
 
 <div id="eea-controlpanel-container">
     <div id="panel1" class="ui-widget-content eeapanel">
-        <h3 class="ui-widget-header" title="drag and drop panel" tal:attributes="title">
+        <h3 class="ui-widget-header" title="drag and drop panel" i18n:attributes="title">
             <span class="eea-icon eea-icon-user"></span>
             <tal:block i18n:translate="">Today login status</tal:block>
             <span class="service-icons">
-                <span class="eea-icon eea-icon-download" style="color:#999" title="Download" tal:attributes="title"></span>
-                <span class="eea-icon eea-icon-refresh" title="Refresh" tal:attributes="title"></span>
+                <span class="eea-icon eea-icon-download" style="color:#999" title="Download" i18n:attributes="title"></span>
+                <span class="eea-icon eea-icon-refresh" title="Refresh" i18n:attributes="title"></span>
                 <span class="eea-icon eea-icon-times" style="color:#999" title="Close" i18n:attributes="title"></span>
             </span>
         </h3>
